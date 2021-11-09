@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout d'Adresse{% endblock %}
+
+{% block body %}
+<h1> Mon Adresse </h1>
+<h2> Formulaire d'ajout d'adresse </h2>
+<hr/>
+
+{{ form_start(addAddress) }}
+    <div class="row">
+        <div class="col-md-6">
+            {{ form_row(addAddress.firstName) }}
+        </div>
+        <div class="col-md-6">
+            {{ form_row(addAddress.lastName) }}
+        </div>
+        <div class="col-md-6">
+            {{ form_row(addAddress.company) }}
+        </div>
+        <div class="col-md-6">
+            {{ form_row(addAddress.phone) }}
+        </div>
+        <h2 class="mt-4"> Adresse Postal </h2>
+        <div class="col-md-12">
+            {{ form_row(addAddress.name) }}
+        </div>
+            <div class="col-md-12">
+            {{ form_row(addAddress.address) }}
+        </div>
+        <div class="col-md-4">
+            {{ form_row(addAddress.postalCode) }}
+        </div>
+        <div class="col-md-4">
+            {{ form_row(addAddress.city) }}
+        </div>
+        <div class="col-md-4">
+            {{ form_row(addAddress.country) }}
+        </div>
+    </div>
+{{ form_end(addAddress) }}
+
+{% endblock %}

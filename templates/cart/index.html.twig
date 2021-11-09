@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recap{% endblock %}
+
+{% block body %}
+
+<h1>Mon panier</h1>
+<p>Voilà l'ensemble de vos produits</p>
+<hr />
+
+{% if cart|length > 0  %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Produit</th>
+      <th scope="col"></th>
+      <th scope="col">Quantité</th>
+      <th scope="col">Prix</th>
+      <th scope="col">Total</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% set total = null %}
+  {% for item in cart %}
+    <tr>
+      <th scope="row">
+        <img src="/image/{{ item.product.illustration }}" alt="{{ item.product.name }}" height="85px">
+      </th>
+      <th>{{ item.product.name }}
+        <br />
+        <small>{{ item.product.subtitle }}</small>
+      </th>
+      <td>
+        <a href="{{ path('decrease_cart', {'id': item.product.id}) }}"><i class="fas fa-minus-square"></i></a>
+       {{ item.quantity }}
+        <a href="{{ path("add_cart", {'id': item.product.id }) }}"><i class="fas fa-plus-square"></i></a>
+      </td>
+      <td>{{ (item.product.price / 100)|number_format(2, ',', '.') }}¥</td>
+      <td>{{ (item.quantity * item.product.price / 100)|number_format(2, ',', '.') }}¥</td>
+      <th>
+        <a href="{{ path("remove_one_cart", {"id": item.product.id}) }}" class="btn btn-warning">
+            Supprimer
+        </a>
+      </th>
+    </tr>
+    {% set total = total + item.quantity * item.product.price  %}
+  {% endfor %}
+    {# <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th>
+     <a href="{{ path("remove_cart") }}" class="btn btn-danger">
+          Tout supprimer
+      </a>
+    </th>
+     
+    </tr> #}
+
+  </tbody>
+</table>
+
+<section class='mb-5 fs-5'>
+  <div>
+   Nombre de produit: {{cart|length}}
+  </div>
+  <div>
+    Total de mon panier: {{ (total / 100)|number_format(2, ',', '.') }}¥
+  </div>
+  <button class="btn btn-success mt-2">Valider mon panier</button>
+</section>
+{% else %}
+<div class='fs-2'>Votre panier est vide, achete des trucs 🤑</div>
+{% endif %}
+
+{% endblock %}

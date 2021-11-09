@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Adresses{% endblock %}
+
+{% block body %}
+
+    <!--{{dump(app.user)}}-->
+    <h1>Hello {{app.user.firstName}}! </h1>
+    <h2>Espace Perso<h2>
+    </hr>
+
+    <!--ul>
+        <li>Modifier Adresses</li>
+        <li>
+            <a href="{{ path('changePWD') }}">Modifier Mot de passe</a>
+        </li>
+        <li>Ajouter Adresses</li>
+        <li>Historique des commandes</li>
+    </ul>
+
+    <a href="{{ path ('logout')}}">deconnection</a-->
+
+    {% if app.user.Addresses|length == 0 %}
+    <p> Vous n'avez pas d'adresse enregistré <a href="{{path('account_add_address')}}">Cliquer ici pour en ajouter une<a/><p/>
+    {% endif %}
+    <div class="row">
+        {% for Addresses in app.user.Addresses %}
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h4 class="card-title">{{Addresses.name}}</h4>
+                    <h5 class="card-subtitle mb-2 text-muted">{{Addresses.address}}</h5>
+                    <h6 class="card-text">{{Addresses.postalCode}} {{Addresses.city}} - {{Addresses.country}}</h6>
+                    <a href="{{ path('account_modify_address', {'id': Addresses.id }) }}" class="btn btn-info mt-2">Modifier</a>
+                    <a href="{{ path('account_delete_address', {'id': Addresses.id }) }}" class="btn btn-danger mt-2">Effacer</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

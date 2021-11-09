@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AccountController!{% endblock %}
+
+{% block body %}
+    <h1>Hello {{app.user.firstName}}! </h1>
+    <h2>Changer Mot de passe ? <h2>
+    </hr>
+    	{% if notif%}
+            <div class="alert alert-info" role="alert"> {{notif}}</div>
+        {% endif %}    
+        <!--{{dump(app.user)}}-->
+
+    <ul>
+
+        <li>Modifier Mot de passe</li>
+        {{ form(formPWD) }}
+
+    </ul>
+
+
+{% endblock %}

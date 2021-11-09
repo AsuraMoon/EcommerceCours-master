@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recap!{% endblock %}
+
+{% block body %}
+
+    <h1>Récapitulation de ma commande</h1>
+
+    <div class="row">
+        <div class="col-md-6">
+            <p>Choisir le transporteur</p>
+            <p>Choisir l'adresse de livraison</p>
+            {% if app.user.addresses.snapshot != [] %}
+                {% set toHTML %}
+                    {{form_start(form, {action : path("order_recap") } )}}
+                    {{form_end(form)}}
+                {% endset %}
+                {{ toHTML|replace({ "%br%":"<br />"})|raw}}
+            {% else %}
+                <p> Vous n'avez pas d'adresse enregistré <a href="{{path('account_add_address')}}">Cliquer ici pour en ajouter une<a/><p/>
+            {% endif %}
+
+        </div>
+        <div class="col-md-6">
+            <p>Détail de ma commande</p>
+                {% for product in cart %}
+                    <div class="row">
+                    <div class="col-2">
+                    <img src="/image/{{product.product.illustration}}" alt="{{ product.product.name }}" height="75"> 
+                    </div>
+                    <div class="col-8 my-auto">{{ product.product.name }}<br/>
+                    <small>{{ product.product.subtitle }}</small></div>
+                    <div class="col-2 my-auto">x {{ product.quantity }}</div>
+                    </div>
+
+                {% endfor %}
+        </div>
+    </div>
+{% endblock %}

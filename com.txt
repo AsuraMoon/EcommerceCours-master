@@ -1,0 +1,19 @@
+Composer install
+composer update
+symfony new NOMDUPROJET --full
+
+les deux versions dessous fonctionnent
+
+php bin/console doctrine:database:create
+symfony console doctrine:migrations:migrate
+php bin/console make:controller NOMDUCONTROLLER
+symfony console make:user
+symfony console make:form
+php bin/console server:run ou php bin/console serve
+
+symfony console make:auth
+symfony console debug:router (debug)
+composer require easycorp/easyadmin-bundle (admin)
+php bin/console make:admin:dashboard
+php bin/console make:admin:crud
+symfony console make:entity

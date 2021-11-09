@@ -1,0 +1,9 @@
+.navAccount{
+    color:white;
+    text-decoration:none;
+}
+
+.navAccount:hover{
+    color:wheat;
+    text-decoration:none;
+}

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AccountController!{% endblock %}
+
+{% block body %}
+
+    <!--{{dump(app.user)}}-->
+    <h1>Hello {{app.user.firstName}}! </h1>
+    <h2>Espace Perso<h2>
+    </hr>
+
+    <ul>
+        <li>Modifier Pseudo</li>
+        <li>
+            <a href="{{ path('changePWD') }}">
+                Modifier Mot de passe
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('account_add_address') }}">
+                Ajouter Adresses
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('account_address') }}">
+                Voir mes Adresses
+            </a>
+        </li>
+        <li>Historique des commandes</li>
+    </ul>
+
+{% endblock %}
